@@ -66,7 +66,7 @@ module.exports = function (app, io) {
     if (req.body.picture) {
       var userId = crypto.createHash('md5').update(req.body.fingerprint + req.connection.remoteAddress).digest('hex');
 
-      if (userId === req.body.userid) {
+      //if (userId === req.body.userid) {
 
         addChat(req.body.message, req.body.picture, userId, function (err, status) {
           if (err) {
@@ -76,10 +76,10 @@ module.exports = function (app, io) {
             res.json({ status: status });
           }
         });
-      } else {
-        res.status(403);
-        res.json({ error: 'invalid fingerprint' });
-      }
+      //} else {
+      //  res.status(403);
+      //  res.json({ error: 'invalid fingerprint' });
+      //}
     } else {
       res.status(400);
       res.json({ error: 'you need webrtc' });
